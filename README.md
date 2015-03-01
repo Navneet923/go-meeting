@@ -12,7 +12,6 @@ A simple HTTP web service to help run faster meetings
     d. More stuff I am surely forgetting
 3. Store these meetings as .md / .pdf files
 4. Provide an email w/ action items et al to each participant
-5. Profit
  
 ## Install
 
