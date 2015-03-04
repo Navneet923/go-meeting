@@ -10,26 +10,14 @@
 
 </head>
 <body ng-controller="AppController">
-    
-    <h1>Go Meeting!</h1>
 
-    <!-- These should be routed in the angular app using angular-route  -->
-    <h3>Past Meetings</h3>
-    <div class = "gom-meeting-preview"
-        ng-repeat = "meeting in meetings" 
-        ng-click = gotoMeeting(meeting) >
-        <pre>{{ meeting.name }} -- {{ meeting.date | date:'yyyy-MM-dd HH:mm:ss'}}</pre>
-    </div>
-
-    <h3>Current Meetings</h3>
-    <pre>TODO</pre>
-
-    <h3>Pending Actions</h3>
-    <pre>TODO</pre>
+    <!-- This is essentially the pane in which various application entry-points
+         can be routed. -->
+    <div ng-view></div>
 
     <!-- Load JS -->
-    <script type="text/javascript" src="/external/angularjs/angular.min.js"></script>
-    <script type="text/javascript" src="/external/angularjs-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="/external/angularjs/angular.js"></script>
+    <script type="text/javascript" src="/external/angularjs-route/angular-route.js"></script>
 
     <script type="text/javascript" src="/app.js"></script>
 
