@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="MeetingMinutes">
+<head>
+    <meta charset="UTF-8">
+    <title>Go-Meeting</title>
+
+    <!-- Load CSS -->
+    <link rel="stylesheet" type="text/css" href="/external/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/app.css">
+
+</head>
+<body ng-controller="AppController">
+    
+    <h1>Go Meeting!</h1>
+
+    <!-- These should be routed in the angular app using angular-route  -->
+    <h3>Past Meetings</h3>
+    <div class = "gom-meeting-preview"
+        ng-repeat = "meeting in meetings" 
+        ng-click = gotoMeeting(meeting) >
+        <pre>{{ meeting.name }} -- {{ meeting.date | date:'yyyy-MM-dd HH:mm:ss'}}</pre>
+    </div>
+
+    <h3>Current Meetings</h3>
+    <pre>TODO</pre>
+
+    <h3>Pending Actions</h3>
+    <pre>TODO</pre>
+
+    <!-- Load JS -->
+    <script type="text/javascript" src="/external/angularjs/angular.min.js"></script>
+    <script type="text/javascript" src="/app.js"></script>
+
+</body>
+</html>
