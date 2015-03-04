@@ -6,3 +6,14 @@ html, body {
     position: relative;
 }
 
+.gom-meeting-preview {
+    max-width: 720px;
+    width: 90%;
+
+    margin: 0 auto;
+
+    height: 40px;
+    background: red;
+    color: white;
+}
+

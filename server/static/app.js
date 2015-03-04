@@ -19,6 +19,17 @@ Description:
 app.controller("AppController", ["$scope", "$location", "$timeout",
 
     function($scope, $location, $timeout) {
+
+        // Define some dummy meetings so we can mock up the UI
+        $scope.meetings = [
+            { name: "test 01", date: new Date() },
+            { name: "test 02", date: new Date() }
+        ]
+
+        $scope.gotoMeeting = function(meeting) {
+            console.log("GOTO Meeting: " + meeting.name);
+        }
+
     }]
 
 );
