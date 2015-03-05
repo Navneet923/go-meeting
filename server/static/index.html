@@ -11,9 +11,15 @@
 </head>
 <body ng-controller="AppController">
 
+    <div class = "gom-page-header">
+        <a class = "gom-nav-item" href = "#meetings"> Meetings </a>
+        <a class = "gom-nav-item" href = "#ars"> ARs </a>
+        <a class = "gom-nav-new-mtg" href = "#new">+ New Meeting</a>
+    </div>
+
     <!-- This is essentially the pane in which various application entry-points
          can be routed. -->
-    <div ng-view></div>
+    <div class = "gom-page-content" ng-view></div>
 
     <!-- Load JS -->
     <script type="text/javascript" src="/external/angularjs/angular.js"></script>
