@@ -12,9 +12,9 @@
 <body ng-controller="AppController">
 
     <div class = "gom-page-header">
-        <a class = "gom-nav-item" href = "#meetings"> Meetings </a>
-        <a class = "gom-nav-item" href = "#ars"> ARs </a>
-        <a class = "gom-nav-new-mtg" href = "#new">+ New Meeting</a>
+        <a class = "gom-nav-item" ng-class = "{'active': activeTab == 'meetings'}" ng-click = "changeTab('meetings')">Meetings</a>
+        <a class = "gom-nav-item" ng-class = "{'active': activeTab == 'actions'}" ng-click = "changeTab('actions')">Actions</a>
+        <a class = "gom-nav-new-mtg" href = "#new_meeting">+ New Meeting</a>
     </div>
 
     <!-- This is essentially the pane in which various application entry-points

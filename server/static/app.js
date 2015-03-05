@@ -21,6 +21,12 @@ app.config(["$routeProvider",
             }).when("/meetings/:meetingId", {
                 templateUrl: "partials/meeting.html",
                 controller:  "MeetingController"
+            }).when("/actions", {
+                templateUrl: "partials/action-list.html",
+                controller:  "ActionListController"
+            }).when("/new_meeting", {
+                templateUrl: "partials/new-meeting.html",
+                controller:  "NewMeetingController"
             }).otherwise({ redirectTo: "/meetings" });
     }]
 
@@ -39,6 +45,12 @@ Description:
 app.controller("AppController", ["$scope", "$location", "$timeout",
 
     function($scope, $location, $timeout) {
+
+        $scope.activeTab = 'meetings';
+        $scope.changeTab = function(targetTabName) {
+            $scope.activeTab = targetTabName;
+            $location.url("" + $scope.activeTab);
+        }
 
         // Define some dummy meetings so we can mock up the UI
         $scope.meetings = [
@@ -72,7 +84,6 @@ app.controller("MeetingListController", ["$scope", "$location", "$timeout",
 
 );
 
-
 /******************************************************************************\
 Function:
     MeetingController 
@@ -94,6 +105,41 @@ app.controller("MeetingController", ["$scope", "$location", "$timeout",
 
 );
 
+/******************************************************************************\
+Function:
+    ActionListController 
+
+Dependencies:
+    ...
+
+Description:
+    Application controller responsible for querying and displaying action items 
+\******************************************************************************/
+app.controller("ActionListController", ["$scope", "$location", "$timeout",
+
+    function($scope, $location, $timeout) {
+        console.log("Action List Controller initialized");
+    }]
+
+);
+
+/******************************************************************************\
+Function:
+    NewMeetingController 
+
+Dependencies:
+    ...
+
+Description:
+    Application controller responsible for updating / creating a new meeting 
+\******************************************************************************/
+app.controller("NewMeetingController", ["$scope", "$location", "$timeout",
+
+    function($scope, $location, $timeout) {
+        console.log("New Meeting Controller initialized");
+    }]
+
+);
 
 /*****************************************************************************\
     Service to hit the server
