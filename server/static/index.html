@@ -19,7 +19,10 @@
 
     <!-- This is essentially the pane in which various application entry-points
          can be routed. -->
-    <div class = "gom-page-content" ng-view></div>
+        <div class = "gom-page-content">
+            <div class = "gom-tab-container" ng-view></div>
+        </div>
+
 
     <!-- Load JS -->
     <script type="text/javascript" src="/external/angularjs/angular.js"></script>

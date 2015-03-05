@@ -1,1 +1,18 @@
-<h2>Kickoff a meeting</h2>
+<form novalidate class = "gom-new-meeting-form" name = "newMeetingForm">
+    Title: 
+    <input type="text" ng-model="meeting.title" required /><br>
+
+    Users: 
+    <input type="text" ng-model="meeting.users" required /><br>
+
+    Notes: 
+    <textarea type="text" ng-model="meeting.notes"></textarea><br>
+    
+    <div class = "gom-form-submit-btn" ng-click = "submitNewMeeting()" ng-hide = "newMeetingForm.$invalid">
+        <i class = "fa fa-check"></i> Submit
+    </div>
+</form>
+
+
+
+

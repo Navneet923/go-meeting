@@ -137,6 +137,12 @@ app.controller("NewMeetingController", ["$scope", "$location", "$timeout",
 
     function($scope, $location, $timeout) {
         console.log("New Meeting Controller initialized");
+        $scope.meeting = {};
+
+        $scope.submitNewMeeting = function() {
+            console.log("TODO: Submit meeting request to server");
+            console.log($scope.meeting);
+        }
     }]
 
 );
