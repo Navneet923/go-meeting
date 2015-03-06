@@ -133,15 +133,15 @@ Dependencies:
 Description:
     Application controller responsible for updating / creating a new meeting 
 \******************************************************************************/
-app.controller("NewMeetingController", ["$scope", "$location", "$timeout",
+app.controller("NewMeetingController", ["$scope", "$location", "$timeout", "HttpService",
 
-    function($scope, $location, $timeout) {
+    function($scope, $location, $timeout, HttpService) {
         console.log("New Meeting Controller initialized");
         $scope.meeting = {};
 
         $scope.submitNewMeeting = function() {
             console.log("TODO: Submit meeting request to server");
-            console.log($scope.meeting);
+            HttpService.CreateNewMeeting($scope.meeting);
         }
     }]
 
@@ -154,6 +154,15 @@ app.service("HttpService", ["$http",
 
     function($http) {
         return {
+            CreateNewMeeting: function(meeting) {
+                return $http.post("api/new_meeting", meeting).
+                    success(function(data, status, headers, config) {
+                        console.log("Create was successful!");
+                    }).
+                    error(function(data, status, headers, config) {
+                        console.log("Create failed!");
+                    });
+            }
         };
     }]
 
