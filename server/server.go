@@ -3,6 +3,7 @@ package server
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -31,19 +32,37 @@ func Render404(response http.ResponseWriter, request *http.Request) {
 	response.Write([]byte("Hmm looks like we 404'd trying to find: " + request.URL.Path))
 }
 
-type tests struct {
-	Test string
+// NewMeeting defines a structure which contains the various parameters
+// which come to us from the client
+type NewMeeting struct {
+	Title     string `json:"title"`
+	Attendees string `json:"attendees"`
+	Notes     string `json:"notes"`
 }
 
 // CreateNewMeeting is a POST handler for a request to make a new meeting
 func CreateNewMeeting(response http.ResponseWriter, request *http.Request) {
 	fmt.Printf("POST /api/new_meeting called\n")
 
-	decoder := json.NewDecoder(request.Body)
-	var t tests
-	err := decoder.Decode(&t)
+	var newMeeting NewMeeting
+	body, err := ioutil.ReadAll(request.Body)
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("BODY: %v\n", t)
+	if err := request.Body.Close(); err != nil {
+		panic(err)
+	}
+
+	if err := json.Unmarshal(body, &newMeeting); err != nil {
+		response.Header().Set("Content-Type", "application/json;charset=UTF-8")
+		response.WriteHeader(422)
+		if err := json.NewEncoder(response).Encode(err); err != nil {
+			panic(err)
+		}
+	}
+
+	fmt.Printf("TODO: Add meeting to DB\n")
+	response.Header().Set("Content-Type", "application/json;charset=UTF-8")
+	response.WriteHeader(http.StatusCreated)
+	fmt.Printf("Got New Meeting request: %V\n", newMeeting)
 }
