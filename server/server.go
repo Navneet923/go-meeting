@@ -27,6 +27,13 @@ func SetupRoutes() {
 	http.Handle("/", router)
 }
 
+// SendHTTPStatusCode is a small helper function which takes in a
+// http.ResponseWriter and a status code, sets the header type and sends it
+func SendHTTPStatusCode(response http.ResponseWriter, status int) {
+	response.Header().Set("Content-Type", "application/json;charset=UTF-8")
+	response.WriteHeader(status)
+}
+
 // Render404 will render an error page
 func Render404(response http.ResponseWriter, request *http.Request) {
 	response.Write([]byte("Hmm looks like we 404'd trying to find: " + request.URL.Path))
@@ -44,25 +51,23 @@ type NewMeeting struct {
 func CreateNewMeeting(response http.ResponseWriter, request *http.Request) {
 	fmt.Printf("POST /api/new_meeting called\n")
 
-	var newMeeting NewMeeting
 	body, err := ioutil.ReadAll(request.Body)
 	if err != nil {
 		panic(err)
 	}
-	if err := request.Body.Close(); err != nil {
-		panic(err)
-	}
+	defer request.Body.Close()
 
+	var newMeeting NewMeeting
 	if err := json.Unmarshal(body, &newMeeting); err != nil {
-		response.Header().Set("Content-Type", "application/json;charset=UTF-8")
-		response.WriteHeader(422)
+		// Send a mangled request status back
+		SendHTTPStatusCode(response, 422)
+		// TODO: Investigate what it means for the response to encode a JSON err
 		if err := json.NewEncoder(response).Encode(err); err != nil {
 			panic(err)
 		}
 	}
 
-	fmt.Printf("TODO: Add meeting to DB\n")
-	response.Header().Set("Content-Type", "application/json;charset=UTF-8")
-	response.WriteHeader(http.StatusCreated)
+	// TODO: Add a newMeeting to the DB here
+	SendHTTPStatusCode(response, http.StatusCreated)
 	fmt.Printf("Got New Meeting request: %V\n", newMeeting)
 }
