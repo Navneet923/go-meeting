@@ -25,8 +25,8 @@ func SetupRoutes() {
 	router.HandleFunc("/api/new_meeting", CreateNewMeeting).Methods("POST")
 
 	// GET Routes:
-	router.HanldeFunc("/api/meetings", FetchMeetings).Methods("GET")
-	router.HandleFunc("/api/meeting/{id}", FetchMeetingWithId).Methods("GET")
+	router.HandleFunc("/api/meetings", FetchMeetings).Methods("GET")
+	router.HandleFunc("/api/meeting/{id}", FetchMeetingWithID).Methods("GET")
 
 	// Use the above router for all routes
 	http.Handle("/", router)
@@ -84,9 +84,9 @@ func FetchMeetings(response http.ResponseWriter, request *http.Request) {
 	response.Write([]byte("TODO: Implement FetchMeetings"))
 }
 
-// FetchMeetingWithId is a GET handler which returns a given
+// FetchMeetingWithID is a GET handler which returns a given
 // meeting (or an error) given an ID
-func FetchMeetingWithId(response http.ResponseWriter, request *http.Request) {
+func FetchMeetingWithID(response http.ResponseWriter, request *http.Request) {
 	// Extract id
 	id := mux.Vars(request)["id"]
 	response.Write([]byte(fmt.Sprintf("%V id recieved.\n", id)))
