@@ -9,6 +9,14 @@ import (
 	"github.com/gorilla/mux"
 )
 
+// NewMeeting defines a structure which contains the various parameters
+// which come to us from the client
+type NewMeeting struct {
+	Title     string `json:"title"`
+	Attendees string `json:"attendees"`
+	Notes     string `json:"notes"`
+}
+
 // SetupRoutes defines the various routes that this server will handle
 // as well as allow for the hosting of static assets
 func SetupRoutes() {
@@ -41,15 +49,10 @@ func SendHTTPStatusCode(response http.ResponseWriter, status int) {
 
 // Render404 will render an error page
 func Render404(response http.ResponseWriter, request *http.Request) {
-	response.Write([]byte("Hmm looks like we 404'd trying to find: " + request.URL.Path))
-}
+	fmt.Printf("GET /404 Inovked")
 
-// NewMeeting defines a structure which contains the various parameters
-// which come to us from the client
-type NewMeeting struct {
-	Title     string `json:"title"`
-	Attendees string `json:"attendees"`
-	Notes     string `json:"notes"`
+	// Respond with a 404 page, this is a placeholder
+	response.Write([]byte("Hmm looks like we 404'd trying to find: " + request.URL.Path))
 }
 
 // CreateNewMeeting is a POST handler for a request to make a new meeting
@@ -81,6 +84,9 @@ func CreateNewMeeting(response http.ResponseWriter, request *http.Request) {
 
 // FetchMeetings is a GET handler which returns a list of all meetings
 func FetchMeetings(response http.ResponseWriter, request *http.Request) {
+	fmt.Printf("GET /meetings Invoked")
+
+	// Respond with a list of meetings here
 	response.Write([]byte("TODO: Implement FetchMeetings"))
 }
 
@@ -89,5 +95,9 @@ func FetchMeetings(response http.ResponseWriter, request *http.Request) {
 func FetchMeetingWithID(response http.ResponseWriter, request *http.Request) {
 	// Extract id
 	id := mux.Vars(request)["id"]
+
+	fmt.Printf("GET /meeting/%s\n", id)
+
+	// Respond with meeting specific data
 	response.Write([]byte(fmt.Sprintf("%V id recieved.\n", id)))
 }

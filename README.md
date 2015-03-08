@@ -12,7 +12,8 @@ A simple HTTP web service to help run faster meetings
     d. More stuff I am surely forgetting
 3. Store these meetings as .md / .pdf files
 4. Provide an email w/ action items et al to each participant
- 
+5. TESTS!!!
+
 ## Install
 
 ```
@@ -30,8 +31,4 @@ $docker run -p 3000:3000 --name meeting-minutes --rm <user>/meeting-minutes
 ```
 
 Visit your host machine's ip at port 3000 to view the service!
-
-
-
-
 
