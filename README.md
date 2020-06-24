@@ -4,7 +4,7 @@ A simple HTTP web service to help run faster meetings
 
 ## TODO:
 
-~~1. Build basic Go http server~~
+~~1. Build basic Go http server~~  
 2. Provide route handlers for various meeting related actions:
     a. Create a new meeting (maybe a meeting can have various types)
     b. Maintain db of meetings, allow browsing and download of the same 
@@ -17,7 +17,7 @@ A simple HTTP web service to help run faster meetings
 ## Install
 
 ```
-$go get github.com/sabhiram/go-meeting
+$go get github.com/Navneet923/go-meeting
 $go-meeting
 ```
 
